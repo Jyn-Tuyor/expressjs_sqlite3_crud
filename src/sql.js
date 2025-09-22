@@ -45,4 +45,13 @@ const _delete = async(db, id) => {
     })
 }
 
-module.exports = { execute, insert, get_all, _delete }
+const get_single = async(db, id) => {
+    return new Promise((resolve, reject) => {
+        db.get('SELECT * from test_data WHERE id = ?', [id], (err, row) => {
+            if (err) reject(err);
+            resolve(row);
+        });
+    })
+}
+
+module.exports = { execute, insert, get_all, _delete, get_single }

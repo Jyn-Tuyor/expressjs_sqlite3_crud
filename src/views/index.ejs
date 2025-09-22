@@ -48,7 +48,9 @@
                             <form action="/delete/<%= data.id %>?_method=DELETE" method="POST">
                                 <button class="bg-red-600 text-white rounded-sm px-2 cursor-pointer" type="submit">Delete</button>
                             </form>
-                            <button class="bg-yellow-500 text-white rounded-sm px-2 cursor-pointer" id="update-button">Update</button>
+                            <a href="/update/<%= data.id  %>">
+                                <button class="bg-yellow-500 text-white rounded-sm px-2 cursor-pointer" id="update-button">Update</button>
+                            </a>
                         </td>
 
                     </tr>
