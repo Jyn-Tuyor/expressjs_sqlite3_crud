@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP CRUD</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="w-full bg-[#282828] p-4 shadow-sm">
+            <h4 class="text-white font-bold text-lg text-center">EXPRESS.JS & SQLITE3 CRUD</h4>
+        </nav>
+    </header>
+
+    <center class="mt-4">
+
+        <form action="/data/store" method="post">
+            <input 
+                type="text" 
+                placeholder="Add data" 
+                name="data"
+                class="p-2 outline-none border rounded-sm shadow-sm border-gray-100"
+            >
+            <button class="cursor-pointer bg-[#282828] px-4 py-2 rounded-sm text-white">+</button>
+        </form>
+
+        <table class="border mt-4 shadow-sm rounded-sm border-gray-200">
+            <thead>
+                <th class="px-4 text-sm font-normal">ID</th>
+                <th class="px-4 text-sm font-normal">Data</th>
+                <th class="px-4 text-sm font-normal">Actions</th>
+            </thead>
+
+            <tbody >
+                <% rows.forEach((data)=> { %>
+                    <tr id="<%= data.id %>" class="border border-gray-100">
+                        <td class="px-4">
+                            <%= data.id %>
+                        </td>
+                        <td class="px-4">
+                            <%= data.data %>
+                        </td>
+
+                        <td class="px-4 flex gap-2 text-sm">
+                            <form action="/delete/<%= data.id %>?_method=DELETE" method="POST">
+                                <button class="bg-red-600 text-white rounded-sm px-2 cursor-pointer" type="submit">Delete</button>
+                            </form>
+                            <button class="bg-yellow-500 text-white rounded-sm px-2 cursor-pointer" id="update-button">Update</button>
+                        </td>
+
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </center>
+
+
+</body>
+
+</html>
