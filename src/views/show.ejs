@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EXP CRUD</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    
-    hey
 
-    <%= row.data %>
+<body>
+    <header>
+        <nav class="w-full bg-[#282828] p-4 shadow-sm">
+            <h4 class="text-white font-bold text-lg text-center">EXPRESS.JS & SQLITE3 CRUD</h4>
+        </nav>
+    </header>
+
+    <center class="mt-4">
+        <a href="/">back</a>
+        <form action="/data/update/<%= row.id %>?_method=PUT" method="post">
+            <input 
+                type="text" 
+                placeholder="Add data" 
+                name="data"
+                value="<%= row.data %>"
+                class="p-2 outline-none border rounded-sm shadow-sm border-gray-100"
+            >
+            <button class="cursor-pointer bg-[#282828] px-4 py-2 rounded-sm text-white">Update</button>
+        </form>
+    </center>
+
 
 </body>
+
 </html>

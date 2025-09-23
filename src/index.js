@@ -2,7 +2,14 @@ const express = require("express")
 const path = require("path")
 const method_override = require('method-override')
 const sqlite3 = require("sqlite3").verbose()
-const { execute, insert, get_all, _delete, get_single } = require("./sql.js")
+const { 
+    execute,
+    insert,
+    get_all,
+    _delete,
+    get_single,
+    update
+} = require("./sql.js")
 const db = new sqlite3.Database("./database.db", sqlite3.OPEN_READWRITE);
 
 
@@ -44,7 +51,7 @@ app.get('/', async (req, res) => {
 
 })
 
-app.post('/data/store', async (req, res) => {
+app.post('/data/store', async(req, res) => {
     try {
         const { data } = req.body;
 
@@ -62,6 +69,21 @@ app.post('/data/store', async (req, res) => {
 
     return res.status(201).redirect('/');
 })
+
+app.put('/data/update/:id', async(req, res) => {
+    try {
+        const data = req.body.data
+        const id = req.params.id
+
+        await update(db, data, id);
+
+        res.status(200).redirect('/')
+
+    } catch(err) {
+        console.log(err)
+    }
+});
+
 
 app.delete('/delete/:id', async(req, res) => {
     try {

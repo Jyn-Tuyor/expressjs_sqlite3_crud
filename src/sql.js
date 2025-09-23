@@ -54,4 +54,16 @@ const get_single = async(db, id) => {
     })
 }
 
-module.exports = { execute, insert, get_all, _delete, get_single }
+const update = async(db, data, id) => {
+    return new Promise((resolve, reject) => {
+        db.run(`UPDATE test_data SET data = ? WHERE id = ?`, [data, id], (err) => {
+            if (err) reject(err);
+
+            resolve();
+
+        });      
+
+    }) 
+}
+
+module.exports = { execute, insert, get_all, _delete, get_single, update }
